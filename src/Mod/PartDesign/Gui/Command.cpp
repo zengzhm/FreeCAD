@@ -47,6 +47,7 @@
 #include <Gui/SelectionObject.h>
 #include <Mod/Sketcher/App/SketchObject.h>
 #include <Mod/PartDesign/App/Body.h>
+#include <Mod/PartDesign/App/FeaturePad.h>
 #include <Mod/PartDesign/App/FeatureGroove.h>
 #include <Mod/PartDesign/App/FeatureMultiTransform.h>
 #include <Mod/PartDesign/App/FeatureRevolution.h>
@@ -493,6 +494,7 @@ CmdPartDesignNewSketch::CmdPartDesignNewSketch()
 
 void CmdPartDesignNewSketch::activated(int iMsg)
 {
+    //create sketch
     Q_UNUSED(iMsg);
     App::Document *doc = getDocument ();
     PartDesign::Body *pcActiveBody( nullptr );
@@ -828,6 +830,9 @@ void CmdPartDesignNewSketch::activated(int iMsg)
             Gui::Control().showDialog(new PartDesignGui::TaskDlgFeaturePick(planes, status, accepter, worker, true, quitter));
         }
     }
+
+
+
 }
 
 bool CmdPartDesignNewSketch::isActive(void)
@@ -1292,6 +1297,75 @@ void prepareProfileBased(Gui::Command* cmd, const std::string& which, double len
 
     prepareProfileBased(pcActiveBody, cmd, which, worker);
 }
+
+//===========================================================================
+// PartDesign_OneTouchPad
+//===========================================================================
+DEF_STD_CMD_A(CmdPartDesignOneTouchPad)
+
+CmdPartDesignOneTouchPad::CmdPartDesignOneTouchPad() : Command("PartDesign_OneTouchPad")
+{
+    sAppModule = "PartDesign";
+    sGroup = QT_TR_NOOP("PartDesign");
+    sMenuText = QT_TR_NOOP("OneTouchPad");
+    sToolTipText = QT_TR_NOOP("One Touch Pad a selected sketch");
+    sWhatsThis = "PartDesign_OneTouchPad";
+    sStatusTip = sToolTipText;
+    sPixmap = "PartDesign_OneTouchPad";
+}
+
+void CmdPartDesignOneTouchPad::activated(int iMsg)
+{   
+    Q_UNUSED(iMsg);
+    App::Document* doc = getDocument();
+    PartDesign::Body* pcActiveBody(nullptr);
+    PartDesign::Pad* pad(nullptr);
+    Sketcher::SketchObject* feat(nullptr);
+    
+    pcActiveBody = dynamic_cast<PartDesign::Body*>(doc->addObject("PartDesign::Body", "Body"));
+    if (!pcActiveBody) {
+        Base::Console().Error("Failed to add body object");
+        return;
+    }
+    if (!doc->getObject("XY_Plane")) {
+        Base::Console().Error("Failed to add body object");
+        return;
+    }else {
+        feat = dynamic_cast<Sketcher::SketchObject*>(doc->addObject("Sketcher::SketchObject", "Sketch"));
+        feat->Support.setValue(doc->getObject("XY_Plane"));
+        feat->MapMode.setValue(Attacher::mmFlatFace);
+        pcActiveBody->addObject(feat);
+        //doc->recompute();
+    }
+
+    //create box
+    std::vector<Part::Geometry*> geoList;
+    std::vector<Base::Vector3d> pointList {Base::Vector3d(0, 0, 0),Base::Vector3d(80, 0, 0),
+        Base::Vector3d(80, 80, 0), Base::Vector3d(0, 80, 0),Base::Vector3d(0, 0, 0)};
+    for (int i = 0; i < 4; i++) {
+        Part::GeomLineSegment* line = new Part::GeomLineSegment();
+        line->setPoints(pointList[i], pointList[i+1]);
+        geoList.push_back(line);
+    }
+    feat->addGeometry(geoList, false);
+
+    //create pad
+    pad = dynamic_cast<PartDesign::Pad*>(doc->addObject("PartDesign::Pad", "Pad"));
+    if (!pad) {
+        Base::Console().Error("Failed to add pad object");
+        return;
+    }
+    pad->Profile.setValue(feat);
+    pad->Length.setValue(10);
+    pad->ReferenceAxis.setValue(feat, std::vector<std::string> {"N_Axis"});
+    pcActiveBody->addObject(pad);
+    feat->Visibility.setValue(false);
+
+
+    doc->recompute();
+}
+
+bool CmdPartDesignOneTouchPad::isActive(void) { return hasActiveDocument(); }
 
 //===========================================================================
 // PartDesign_Pad
@@ -2706,7 +2780,8 @@ void CreatePartDesignCommands(void)
     rcCmdMgr.addCommand(new CmdPartDesignCS());
 
     rcCmdMgr.addCommand(new CmdPartDesignNewSketch());
-
+    
+    rcCmdMgr.addCommand(new CmdPartDesignOneTouchPad());
     rcCmdMgr.addCommand(new CmdPartDesignPad());
     rcCmdMgr.addCommand(new CmdPartDesignPocket());
     rcCmdMgr.addCommand(new CmdPartDesignHole());

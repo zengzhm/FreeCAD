@@ -1,0 +1,6 @@
+<RCC>
+    <qresource> 
+        <file>icons/ZzmDesign_OneTouchPad.svg</file>
+        <file>translations/ZzmDesign_zh-CN.qm</file>
+    </qresource>
+</RCC> 

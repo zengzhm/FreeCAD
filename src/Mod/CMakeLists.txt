@@ -144,3 +144,7 @@ endif(BUILD_TUX)
 if(BUILD_WEB)
   add_subdirectory(Web)
 endif(BUILD_WEB)
+
+if(BUILD_ZZM_DESIGN)
+  add_subdirectory(ZzmDesign)
+endif(BUILD_ZZM_DESIGN)

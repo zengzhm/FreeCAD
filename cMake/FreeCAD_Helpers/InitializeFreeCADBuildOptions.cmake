@@ -143,7 +143,7 @@ macro(InitializeFreeCADBuildOptions)
     option(BUILD_SURFACE "Build the FreeCAD surface module" ON)
     option(BUILD_VR "Build the FreeCAD Oculus Rift support (need Oculus SDK 4.x or higher)" OFF)
     option(BUILD_CLOUD "Build the FreeCAD cloud module" OFF)
-
+	option(BUILD_ZZM_DESIGN "Build the FreeCAD zzm design module" ON)
     if(MSVC)
         option(BUILD_FEM_NETGEN "Build the FreeCAD FEM module with the NETGEN mesher" ON)
         option(FREECAD_USE_PCL "Build the features that use PCL libs" OFF) # 3/5/2021 current LibPack uses non-C++17 FLANN

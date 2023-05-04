@@ -3982,7 +3982,21 @@ PyObject *GeomLine::getPyObject(void)
 
 // -------------------------------------------------
 
-TYPESYSTEM_SOURCE(Part::GeomLineSegment,Part::GeomTrimmedCurve)
+Base::Type Part::GeomLineSegment::getClassTypeId(void)
+{
+    return Part::GeomLineSegment::classTypeId;
+}
+Base::Type Part::GeomLineSegment::getTypeId(void) const
+{
+    return Part::GeomLineSegment::classTypeId;
+}
+Base::Type Part::GeomLineSegment::classTypeId = Base::Type::badType();
+void* Part::GeomLineSegment::create(void) { return new Part::GeomLineSegment(); }
+void Part::GeomLineSegment::init(void)
+{
+    initSubclass(Part::GeomLineSegment::classTypeId, "Part::GeomLineSegment",
+                 "Part::GeomTrimmedCurve", &(Part::GeomLineSegment::create));
+}
 
 GeomLineSegment::GeomLineSegment()
 {

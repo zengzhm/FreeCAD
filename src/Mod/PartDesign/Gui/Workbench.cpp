@@ -498,7 +498,8 @@ Gui::MenuItem* Workbench::setupMenuBar() const
     Gui::MenuItem* additives = new Gui::MenuItem;
     additives->setCommand("Create an additive feature");
 
-    *additives << "PartDesign_Pad"
+    *additives << "PartDesign_OneTouchPad" 
+               << "PartDesign_Pad"
                << "PartDesign_Revolution"
                << "PartDesign_AdditiveLoft"
                << "PartDesign_AdditivePipe"
@@ -620,7 +621,8 @@ Gui::ToolBarItem* Workbench::setupToolBars() const
     part = new Gui::ToolBarItem(root);
     part->setCommand("Part Design Modeling");
 
-    *part << "PartDesign_Pad"
+    *part << "PartDesign_OneTouchPad" 
+          << "PartDesign_Pad"
           << "PartDesign_Revolution"
           << "PartDesign_AdditiveLoft"
           << "PartDesign_AdditivePipe"

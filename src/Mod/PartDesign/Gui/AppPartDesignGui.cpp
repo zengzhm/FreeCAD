@@ -71,7 +71,10 @@ void CreatePartDesignPrimitiveCommands(void);
 void loadPartDesignResource()
 {
     // add resources and reloads the translators
-    Q_INIT_RESOURCE(PartDesign);
+    do {
+        extern int qInitResources_PartDesign();
+        qInitResources_PartDesign();
+    } while (false);
     Gui::Translator::instance()->refresh();
 }
 
