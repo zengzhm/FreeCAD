@@ -33,7 +33,6 @@
 #include <CXX/Extensions.hxx>
 #include <CXX/Objects.hxx>
 
-
 namespace ZzmDesign {
 class Module : public Py::ExtensionModule<Module>
 {

@@ -7,9 +7,11 @@ include_directories(
     ${ZLIB_INCLUDE_DIR}
     ${PYTHON_INCLUDE_DIRS}
     ${XercesC_INCLUDE_DIRS}
+	${OCC_INCLUDE_DIR}
 )
 
 set(ZzmDesignGui_LIBS
+	Part
     ZzmDesign
     FreeCADGui
 )
@@ -24,6 +26,8 @@ SET(ZzmDesignGui_SRCS
     ${ZzmDesign_QRC_SRCS}
     AppZzmDesignGui.cpp
     Command.cpp
+	Command2DGeometry.cpp
+	Command3DGeometry.cpp
     PreCompiled.cpp
     PreCompiled.h
     Workbench.cpp

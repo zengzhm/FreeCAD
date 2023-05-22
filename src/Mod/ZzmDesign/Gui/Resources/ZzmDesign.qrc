@@ -1,6 +1,23 @@
 <RCC>
     <qresource> 
-        <file>icons/ZzmDesign_OneTouchPad.svg</file>
+        <file>icons/ZzmDesign_2D_BSpline.svg</file>
+        <file>icons/ZzmDesign_2D_Bezier.svg</file>
+        <file>icons/ZzmDesign_2D_Circle.svg</file>
+        <file>icons/ZzmDesign_2D_Ellipse.svg</file>
+        <file>icons/ZzmDesign_2D_Hyperbola.svg</file>
+        <file>icons/ZzmDesign_2D_Line.svg</file>
+        <file>icons/ZzmDesign_2D_Offset.svg</file>
+        <file>icons/ZzmDesign_2D_Parabola.svg</file>
+        <file>icons/ZzmDesign_2D_Trimmed.svg</file>
+        <file>icons/ZzmDesign_3D_BSpline.svg</file>
+        <file>icons/ZzmDesign_3D_BezCurve.svg</file>
+        <file>icons/ZzmDesign_3D_Circle.svg</file>
+        <file>icons/ZzmDesign_3D_Ellipse.svg</file>
+        <file>icons/ZzmDesign_3D_Hyperbola.svg</file>
+        <file>icons/ZzmDesign_3D_Line.svg</file>
+        <file>icons/ZzmDesign_3D_Offset.svg</file>
+        <file>icons/ZzmDesign_3D_Parabola.svg</file>
+        <file>icons/ZzmDesign_3D_Trimmed.svg</file>
         <file>translations/ZzmDesign_zh-CN.qm</file>
     </qresource>
 </RCC> 

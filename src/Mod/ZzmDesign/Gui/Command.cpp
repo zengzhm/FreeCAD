@@ -31,34 +31,5 @@
 #include <Gui/Command.h>
 
 
-//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-
-//===========================================================================
-// CmdZzmDesignTest THIS IS JUST A TEST COMMAND
-//===========================================================================
-DEF_STD_CMD_A(CmdZzmDesignOneTouchPad)
-
-CmdZzmDesignOneTouchPad::CmdZzmDesignOneTouchPad()
-  :Command("ZzmDesign_OneTouchPad")
-{
-    sAppModule    = "ZzmDesign";
-    sGroup        = QT_TR_NOOP("ZzmDesign");
-    sMenuText     = QT_TR_NOOP("OneTouchPad");
-    sToolTipText  = QT_TR_NOOP("One Touch Pad a selected sketch");
-    sWhatsThis    = "ZzmDesign_OneTouchPad";
-    sStatusTip    = sToolTipText;
-    sPixmap       = "ZzmDesign_OneTouchPad";
-    sAccel        = "CTRL+H";
-}
-
-void CmdZzmDesignOneTouchPad::activated(int) {
-    Base::Console().Message("OneTouchPad!\n");
-}
-
-bool CmdZzmDesignOneTouchPad::isActive() { return true; }
-
 void CreateZzmDesignCommands(void)
-{
-    Gui::CommandManager &rcCmdMgr = Gui::Application::Instance->commandManager();
-    rcCmdMgr.addCommand(new CmdZzmDesignOneTouchPad());
-}
+{}

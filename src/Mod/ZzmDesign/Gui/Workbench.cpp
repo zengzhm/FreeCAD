@@ -43,24 +43,73 @@ Workbench::Workbench()
 Workbench::~Workbench()
 {
 }
-
+//2Dgeometry
 Gui::MenuItem* Workbench::setupMenuBar() const
 {
     Gui::MenuItem* root = StdWorkbench::setupMenuBar();
     Gui::MenuItem* item = root->findItem( "&Windows" );
-    Gui::MenuItem* test = new Gui::MenuItem;
-    root->insertItem( item, test );
-    test->setCommand("ZzmDesign");
-    *test << "ZzmDesign_OneTouchPad";
+    Gui::MenuItem* geometry = new Gui::MenuItem;
+    root->insertItem(item, geometry);
+
+    // 2d geometry
+    Gui::MenuItem* geometry_2d = new Gui::MenuItem;
+    geometry_2d->setCommand("Create 2d geometry");
+    *geometry_2d << "Create_2D_Line"
+                 << "Create_2D_Circle"
+                 << "Create_2D_Ellipse"
+                 << "Create_2D_Parabola"
+                 << "Create_2D_Hyperbola"
+                 << "Create_2D_Bezier"
+                 << "Create_2D_BSpline"
+                 << "Create_2D_Trimmed"
+                 << "Create_2D_Offset";
+
+    // 3d geometry
+    Gui::MenuItem* geometry_3d = new Gui::MenuItem;
+    geometry_3d->setCommand("Create 3d geometry");
+    *geometry_3d << "Create_3D_Line"
+                 << "Create_3D_Circle"
+                 << "Create_3D_Ellipse"
+                 << "Create_3D_Parabola"
+                 << "Create_3D_Hyperbola"
+                 << "Create_3D_Bezier"
+                 << "Create_3D_BSpline"
+                 << "Create_3D_Trimmed"
+                 << "Create_3D_Offset";
+
+    *geometry << geometry_2d 
+              << geometry_3d;
+
     return root;
 }
 
 Gui::ToolBarItem* Workbench::setupToolBars() const
 {
     Gui::ToolBarItem* root = StdWorkbench::setupToolBars();
-    Gui::ToolBarItem* test = new Gui::ToolBarItem(root);
-    test->setCommand( "ZzmDesign Tools" );
-    *test << "ZzmDesign_OneTouchPad"; 
+    Gui::ToolBarItem* geometry_2d = new Gui::ToolBarItem(root);
+    geometry_2d->setCommand("Create 2d geometry");
+    *geometry_2d << "Create_2D_Line"
+                 << "Create_2D_Circle"
+                 << "Create_2D_Ellipse"
+                 << "Create_2D_Parabola"
+                 << "Create_2D_Hyperbola"
+                 << "Create_2D_Bezier"
+                 << "Create_2D_BSpline"
+                 << "Create_2D_Trimmed"
+                 << "Create_2D_Offset";
+
+
+    Gui::ToolBarItem* geometry_3d = new Gui::ToolBarItem(root);
+    geometry_3d->setCommand("Create 3d geometry");
+    *geometry_3d << "Create_3D_Line"
+                 << "Create_3D_Circle"
+                 << "Create_3D_Ellipse"
+                 << "Create_3D_Parabola"
+                 << "Create_3D_Hyperbola"
+                 << "Create_3D_Bezier"
+                 << "Create_3D_BSpline"
+                 << "Create_3D_Trimmed"
+                 << "Create_3D_Offset";
 
     return root;
 }

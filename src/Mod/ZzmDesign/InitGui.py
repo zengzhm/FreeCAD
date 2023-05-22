@@ -11,6 +11,7 @@ class ZzmDesignWorkbench (Workbench):
     def Initialize(self):
         # load the module
         import ZzmDesignGui
+        import Part
 
     def GetClassName(self):
         return "ZzmDesignGui::Workbench"

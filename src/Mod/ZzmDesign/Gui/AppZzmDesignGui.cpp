@@ -40,6 +40,8 @@
 
 // use a different name to CreateCommand()
 void CreateZzmDesignCommands(void);
+void CreateZzmDesignCommands2DGeometry(void);
+void CreateZzmDesignCommands3DGeometry(void);
 
 //load resoure
 void loadZzmDesignResource()
@@ -82,6 +84,9 @@ PyMOD_INIT_FUNC(ZzmDesignGui)
 
     // instantiating the commands
     CreateZzmDesignCommands();
+    CreateZzmDesignCommands2DGeometry();
+    CreateZzmDesignCommands3DGeometry();
+
     ZzmDesignGui::Workbench::init();
 
     // ADD YOUR CODE HERE

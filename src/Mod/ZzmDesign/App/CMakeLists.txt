@@ -7,7 +7,10 @@ include_directories(
     ${XercesC_INCLUDE_DIRS}
 )
 
+link_directories(${OCC_LIBRARY_DIR})
+
 set(ZzmDesign_LIBS
+	Part
     FreeCADApp
 )
 
